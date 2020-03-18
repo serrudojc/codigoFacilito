@@ -241,24 +241,193 @@ admin.saludar();
 
 
 //metodos accesores
+/*
+abstraccion= hacer objetos eficientes y seguros, ocultando detalles irrelevantes y ofreciendo 
+solo aquello que otros objetos necesitaran para interracturar con nosotros.
 
+Encapsulacion: tipo de abstraccion, los objetos ocultan su estado del exterior y unicamente ofrecen 
+un proceso de interaccion con este estado a travez de metodos. Para interactuar con las propiedades 
+de un objeto, usaremos metodos en lugar que las mismas propiedades.
+*/
+/*
+class Usuario{
+    constructor(nombre){ this.nombre = nombre;}
+}
+let user = new Usuario("Marcos");
+console.log(user.nombre);
+user.nombre = "Uriel";
+console.log(user.nombre);
+*/
+/*
+Si en lugar nombre en el constructor, lo llamo name
+this.name = nombre, se rompe todo.
+Ahora toda interacion con la clase debe ser modificada.
+En gral cualquier modificacion que genere otras modificaciones es señal de mal codigo
+
+Vamos a usar metodos accedores
+*/
+
+/*
+class Usuario{
+    constructor(nombre){ this.nombre = nombre;}
+
+    //quiero que siempre muestre la primer letra mayuscula con un getter "carlos" => "Carlos"
+    get name(){
+        return this.nombre.charAt(0).toUpperCase() + this.nombre.slice(1);
+    }
+
+    set name(nombre){
+        this._name = nombre;
+    }
+}
+let user = new Usuario("marcos");
+console.log(user.name);
+*/
+/*
+Cuando llamamos un getter, no hace falta usar parentesis. Parace como qe estoy llamando a una propiedad
+Ademas, el nombre de las propiedades no pueden compartir nombres con los getters o setters
+
+Los setters deben solo recibir un argumento.
+Se ultiliza guion bajo delante para diferencia de las propiedades.
+*/
 
 
 
 //metodos estaticos
+/*
+Metodos que no ncesitan objetos para ser ejecutados.
+NO necesito una instancia, los llamo directamente de la clase.
+*/
+/*
+class Usuario{
+    constructor(permisos = "lectura"){this.permisos = permisos;}
+
+    static createAdmin(){
+        let user = new Usuario("administrador");
+        return user;
+    }
+}
+
+//factoring, objeto que se encarga de crear otros objetos
+let administrador = Usuario.createAdmin();
+*/
 
 
 //prototipos
+/*
+JS lenguaje orientado a prototipos
+
+NO existe clases. Los objetos se crean de otros objetos.
+*/
 
 
 
 //__proto__
+/*
+let user = { nombre: "Juan Carlos"};
+
+typeof user; //vemos qu es un object
+
+
+user.__proto__ //vemos en base a que objeto se escribió
+Esta propiedad nos retorna el prototipo con el que fue creado el objeto.
+*/
+
 
 
 //herencia de prototipos
+/*
+let animal = Object.create(null); //creamos un objeto vacio
+
+animal.vivo = true; //añado atributos
+
+animal.estaVivo = function(){ if(this.vivo) console.log("Sigue vivo");} //añadp metodos
+//creamos el objeto animal, sin usar funciones constructoras ni clases
+
+//en base al objeto animal, vamos a crear un objeto perro
+let perro = Object.create(animal); //usamos el objeto animal como prototipo
+
+perro.estaVivo(); //hereda el "Sigue vivo" de su prototipo animal.
+
+la herencia de prototipos funciona por delegacion.
+
+*/
 
 
 //la propiedad del prototype
+/*
+Las funciones en JS tienen una propiedad prototype
+
+prototype __proto__
+*/
+/*
+function User(){}
+
+let user = new User();
+
+console.log(user.__proto__);
+console.log(User.prototype);
+
+user-__proto__ === User.prototype; //me da true, son iguales.
+*/
+/*
+El prototype de una funcion pasa a ser el prototipo de los objetos creados usando esa funcion.
+Puede servir para modificar los objetos creados por la funcion, incluso cuando ya hayan sido generados.
+*/
+
+/*
+function User(){}
+
+//generamos nuevo usuario
+let user = new User();
+
+//despues de generar el nuevo usuario, vamos a modificar el prototype de la funcion constructora
+User.prototype.saludar = function(){
+    console.log("Hola");
+}
+user.saludar();
+*/
+/*
+Basicamente como existe un enlace entre el prototipo de los objetos creados y la funcion de 
+la que se crearon, es posible modificar todos los objetos que se crearon a partir de esa funcion
+aun despues de que fueran creados. En el ejemplo todos los usuario que fueron creados a partir de esa funcion
+User e incluso aquellos que hayan heredado de User, tomaran esta nueva funcion saludar.
+*/
+
+/*
+function User(){}
+
+let user = new User();
+//creamos otro objeto uriel, estoy usando el prototipo de user para crear un nuevo
+//objeto uriel, y tanto uriel como user van a tener acceso a ese metodo saludar-
+//`pq tanto los bojetos creados a partir de la funcion como los objetos q estan heredados de 
+//esa funcion obtienen el nuevo metodo.
+let uriel = Object.create(user);
+
+User.prototype.saludar = function(){
+    console.log("Hola");
+}
+
+user.saludar();
+*/
+
+//herencia utilizando funciones
+//La clase admin esta heredando de User. hacemos esto asignando un objeto User como prototipo
+//de la funcion admin, de esta manera heredamos todos los atributos y metodos de user hacia admin
+/*
+function User(){}
+
+User.prototype.saludar = function(){
+    console.log("Hola");
+}
+function Admin(){}
+
+Admin.prototype = new User();
+
+let uriel = new Admin();
+
+uriel.saludar();
+*/
 
 
 
