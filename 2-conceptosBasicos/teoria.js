@@ -68,5 +68,43 @@ Estos valores me dan su version booleana como false.
 
 || or, una vez que encuentre un verdadero, ya no le importa el resto
 */
+//******************************************* */
+//Condiciones
 
-//******************************************************** */
+/*
+if(expresion booleana){
+    Si la condicion se cumple, ejecuto este bloque;
+}else{
+    si la condicion NO se cumple, hago esto;
+}
+*/
+//****************************************** */
+//Ciclos
+/*
+hallar patrones, cosas que se repiten
+Ciclo for
+break: salgo del ciclo
+continue: termino la iteracion actual y paso a la siguiente
+Ciclo while
+*/
+//****************************************** */
+//Undefined, null, NaN
+
+/*
+Undefined: indica q a una variable no se le asignó valor o no se declaró
+
+typeof = me dice que el tipo de variable
+
+null= OBJETO especial q indica la ausencia de valor.
+Es un valor asignable, NO UN TIPO DE DATO
+
+null == undefined //verdadero
+Pq ambos tipos su valor booleano es FALSO
+
+null === undefined //falso
+Pq el tipo de cada uno es distinto (uno es object y el otro undefined)
+
+NaN : Not at number
+"asasa"*3 = NaN
+
+*/
