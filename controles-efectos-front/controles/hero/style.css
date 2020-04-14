@@ -1,0 +1,28 @@
+html,body{
+    margin: 0px;
+    font-family: Roboto,arial,helvetica;
+}
+
+.hero-image{
+    height: 75vh;
+    background: url('background.jpg'), red; /*ver esto, modificar tono de imagen, no funca*/
+    background-size: cover; /*adapto la imagen a la pantalla*/
+    background-position: center;
+    padding: 2em;   /*quito el espacio en blanco que los margenes de los elementos generan*/
+    color: black;
+    display: flex;  /*habilito flexbox*/
+    align-items: flex-end;  /*manipulo de manera vertical, */
+    padding-bottom: 5%; /*mas espacio abajo*/
+}
+
+.hero-image h1{
+    font-size: 72px;
+    margin: 0px;
+    text-shadow: 0px 0px 4px rgb(230, 233, 24);
+}
+
+.hero-image p{
+    font-size: 24px;
+    text-shadow: 0px 0px 4px rgb(230, 233, 24);
+}
+
